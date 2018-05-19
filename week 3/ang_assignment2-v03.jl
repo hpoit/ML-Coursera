@@ -71,7 +71,11 @@ Optim.minimizer(optimize(J, zeros(3), ConjugateGradient()))
 #     -25.1614
 #       0.206232
 #       0.201472
-# as expected
+# thetas as expected
+
+Optim.minimum(optimize(J, zeros(3), BFGS()))
+# => 0.2034977015894402
+# J as expected
 
 # Comparing optimizers
 """
