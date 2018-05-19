@@ -27,13 +27,17 @@ end
 h([-24, 0.2, 0.2], X)
 
 # Vectorized cost function
-function cost(θ, X, y)
-    hx = h(θ, X)
-    m = length(X)
-    J = (-y' .* log(hx) .- (1 .- y') .* log(1 .- hx)) ./ m
-    grad = X' .* (hx .- y) ./ m
+function cost2(θ, X, y)
+    hx = sigmoid(X * θ)
+    #hx = h(θ, X)
+    m = length(y)
+    J = (-y' * log.(hx) - (1 - y') * log.(1 - hx)) / m
+    grad = X' * (hx - y) / m
     println("Cost is $J")
     println("Gradient is $grad")
 end
 
-cost([-24, 0.2, 0.2], X, y)
+cost2([0, 0, 0], X, y)
+# Cost is 0.693147180559945
+# Gradient is [-0.1, -12.0092, -11.2628]
+# as expected
