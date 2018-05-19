@@ -59,7 +59,7 @@ f(x) = 100 * x[1]^2
 optimize(f, [0.0,0.0])
 
 # simple case: minimize x² + y²
-f(x) = x[1]^2 + y[2]^2
+f(x) = x[1]^2 + x[2]^2
 optimize(f, zeros(2))
 
 # minimize J and gradient
@@ -132,4 +132,3 @@ Results of Optimization Algorithm
  * Objective Calls: 47
  * Gradient Calls: 47
  """
- 
