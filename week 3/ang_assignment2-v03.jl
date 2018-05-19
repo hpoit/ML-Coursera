@@ -72,3 +72,64 @@ Optim.minimizer(optimize(J, zeros(3), ConjugateGradient()))
 #       0.206232
 #       0.201472
 # as expected
+
+# Comparing optimizers
+"""
+optimize(J, zeros(3), ConjugateGradient())
+Results of Optimization Algorithm
+ * Algorithm: Conjugate Gradient
+ * Starting Point: [0.0,0.0,0.0]
+ * Minimizer: [-25.161375399086644,0.20623204812650806, ...]
+ * Minimum: 2.034977e-01
+ * Iterations: 867
+ * Convergence: true
+   * |x - x'| ≤ 1.0e-32: false
+     |x - x'| = 1.46e-10
+   * |f(x) - f(x')| ≤ 1.0e-32 |f(x)|: true
+     |f(x) - f(x')| = 0.00e+00 |f(x)|
+   * |g(x)| ≤ 1.0e-08: false
+     |g(x)| = 1.21e-08
+   * Stopped by an increasing objective: false
+   * Reached Maximum Number of Iterations: false
+ * Objective Calls: 1747
+ * Gradient Calls: 966
+
+optimize(J, zeros(3), LBFGS())
+Results of Optimization Algorithm
+ * Algorithm: L-BFGS
+ * Starting Point: [0.0,0.0,0.0]
+ * Minimizer: [-25.161334539967783,0.20623172118688082, ...]
+ * Minimum: 2.034977e-01
+ * Iterations: 16
+ * Convergence: true
+   * |x - x'| ≤ 1.0e-32: false
+     |x - x'| = 2.36e-06
+   * |f(x) - f(x')| ≤ 1.0e-32 |f(x)|: false
+     |f(x) - f(x')| = 2.81e-14 |f(x)|
+   * |g(x)| ≤ 1.0e-08: true
+     |g(x)| = 9.28e-10
+   * Stopped by an increasing objective: false
+   * Reached Maximum Number of Iterations: false
+ * Objective Calls: 58
+ * Gradient Calls: 58
+
+optimize(J, zeros(3), BFGS())
+Results of Optimization Algorithm
+ * Algorithm: BFGS
+ * Starting Point: [0.0,0.0,0.0]
+ * Minimizer: [-25.161334548093443,0.20623172126990053, ...]
+ * Minimum: 2.034977e-01
+ * Iterations: 14
+ * Convergence: true
+   * |x - x'| ≤ 1.0e-32: false
+     |x - x'| = 2.19e-06
+   * |f(x) - f(x')| ≤ 1.0e-32 |f(x)|: false
+     |f(x) - f(x')| = 7.82e-14 |f(x)|
+   * |g(x)| ≤ 1.0e-08: true
+     |g(x)| = 1.47e-09
+   * Stopped by an increasing objective: false
+   * Reached Maximum Number of Iterations: false
+ * Objective Calls: 47
+ * Gradient Calls: 47
+ """
+ 
