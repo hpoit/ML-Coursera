@@ -29,7 +29,6 @@ h([-24, 0.2, 0.2], X)
 # Vectorized cost function
 function cost(θ, X, y)
     hx = sigmoid(X * θ)
-    #hx = h(θ, X)
     m = length(y)
     J = (-y' * log.(hx) - (1 - y') * log.(1 - hx)) / m
     grad = X' * (hx - y) / m
