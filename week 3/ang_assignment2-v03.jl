@@ -27,7 +27,7 @@ end
 h([-24, 0.2, 0.2], X)
 
 # Vectorized cost function
-function cost2(θ, X, y)
+function cost(θ, X, y)
     hx = sigmoid(X * θ)
     #hx = h(θ, X)
     m = length(y)
@@ -37,7 +37,12 @@ function cost2(θ, X, y)
     println("Gradient is $grad")
 end
 
-cost2([0, 0, 0], X, y)
+cost([0, 0, 0], X, y)
 # Cost is 0.693147180559945
 # Gradient is [-0.1, -12.0092, -11.2628]
+# as expected
+
+cost([-24, 0.2, 0.2], X, y)
+# Cost is 0.21833019382659777
+# Gradient is [0.042903, 2.56623, 2.6468]
 # as expected
