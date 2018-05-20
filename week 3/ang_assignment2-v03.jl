@@ -58,6 +58,10 @@ optimize(f, [0.0,0.0])
 f(x) = 100 * x[1]^2
 optimize(f, [0.0,0.0])
 
+# simple case: (a - x)^2
+f(x) = (100 - x[1])^2
+optimize(f, zeros(2))
+
 # simple case: minimize x² + y²
 f(x) = x[1]^2 + x[2]^2
 optimize(f, zeros(2))
@@ -66,7 +70,7 @@ optimize(f, zeros(2))
 J(θ) = (-y' * log.(sigmoid(X * θ)) - (1 - y') * log.(1 - sigmoid(X * θ))) / length(y)
 optimize(J, zeros(3), ConjugateGradient())
 
-Optim.minimizer(optimize(J, zeros(3), ConjugateGradient()))
+thetas = Optim.minimizer(optimize(J, zeros(3), ConjugateGradient()))
 # => 3-element Array{Float64,1}:
 #     -25.1614
 #       0.206232
@@ -136,3 +140,14 @@ Results of Optimization Algorithm
  * Objective Calls: 47
  * Gradient Calls: 47
  """
+
+# Plot boundary
+X = data[:, [1,2]]; y = data[:, 3];
+
+pos = find(y); neg = find(iszero, y); # or neg = find(t -> t == 0, y);
+
+scatter(xaxis=("exam 1 score", (30,100), 30:10:100))
+scatter!(yaxis=("exam 2 score", (30,100), 30:10:100))
+scatter!(X[pos, 1], X[pos, 2], markershape=:+, label="admitted")
+scatter!(X[neg, 1], X[neg, 2], markershape=:circle, label="not admitted")
+plot!([-25.1614; 0.206232; 0.201472], X, y)
