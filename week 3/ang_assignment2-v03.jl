@@ -143,6 +143,7 @@ Results of Optimization Algorithm
  """
 
 # Plot boundary (still part 3)
+# Scatter series
 using CSV, Plots; pyplot();
 data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex2/ex2/ex2data1.txt", datarow=1);
 
@@ -155,7 +156,7 @@ scatter!(yaxis=("exam 2 score", (30,100), 30:10:100))
 scatter!(X[pos, 1], X[pos, 2], markershape=:+, label="admitted")
 scatter!(X[neg, 1], X[neg, 2], markershape=:circle, label="not admitted")
 
-# for decision boundary
+# Decision boundary
 X = hcat(ones(100,1), Matrix(data[:, [1,2]])); y = Vector(data[:, 3]);
 
 # map two input features to quadratic features used in regularization
