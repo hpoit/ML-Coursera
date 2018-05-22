@@ -1,11 +1,10 @@
 # Logit mode, v0.3
 
 # Part 2: compute cost and gradient
-using CSV, Plots; pyplot();
-data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex2/ex2/ex2data1.txt", datarow=1)
+using CSV
+data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex2/ex2/ex2data1.txt", datarow=1);
 
-X = hcat(ones(100,1), Matrix(data[:, [1,2]]))
-y = Vector(data[:, 3])
+X = hcat(ones(100,1), Matrix(data[:, [1,2]])); y = Vector(data[:, 3]);
 
 # Sigmoid function
 function sigmoid(z)
@@ -50,25 +49,27 @@ cost([-24, 0.2, 0.2], X, y)
 # Part 3: optimize J and gradient
 using Optim
 
-# simple case: minimize x²
+# simple minimization cases
 f(x) = x[1]^2
 optimize(f, [0.0,0.0])
 
-# simple case: minimize a * x²
 f(x) = 100 * x[1]^2
 optimize(f, [0.0,0.0])
 
-# simple case: (a - x)^2
 f(x) = (100 - x[1])^2
 optimize(f, zeros(2))
 
-# simple case: minimize x² + y²
 f(x) = x[1]^2 + x[2]^2
 optimize(f, zeros(2))
 
-# minimize J and gradient
+f(x) = x[2] * x[1]^2
+optimize(f, zeros(2))
+# one-argument closure
+optimize(x -> f(x), zeros(2))
+
+# minimize J
 J(θ) = (-y' * log.(sigmoid(X * θ)) - (1 - y') * log.(1 - sigmoid(X * θ))) / length(y)
-optimize(J, zeros(3), ConjugateGradient())
+optimize(J, zeros(3), BFGS())
 
 thetas = Optim.minimizer(optimize(J, zeros(3), ConjugateGradient()))
 # => 3-element Array{Float64,1}:
@@ -79,7 +80,7 @@ thetas = Optim.minimizer(optimize(J, zeros(3), ConjugateGradient()))
 
 Optim.minimum(optimize(J, zeros(3), BFGS()))
 # => 0.2034977015894402
-# J as expected
+# θ for J as expected
 
 # Comparing optimizers
 """
@@ -141,7 +142,10 @@ Results of Optimization Algorithm
  * Gradient Calls: 47
  """
 
-# Plot boundary
+# Plot boundary (still part 3)
+using CSV, Plots; pyplot();
+data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex2/ex2/ex2data1.txt", datarow=1);
+
 X = data[:, [1,2]]; y = data[:, 3];
 
 pos = find(y); neg = find(iszero, y); # or neg = find(t -> t == 0, y);
@@ -150,4 +154,44 @@ scatter(xaxis=("exam 1 score", (30,100), 30:10:100))
 scatter!(yaxis=("exam 2 score", (30,100), 30:10:100))
 scatter!(X[pos, 1], X[pos, 2], markershape=:+, label="admitted")
 scatter!(X[neg, 1], X[neg, 2], markershape=:circle, label="not admitted")
-plot!([-25.1614; 0.206232; 0.201472], X, y)
+
+# for decision boundary
+X = hcat(ones(100,1), Matrix(data[:, [1,2]])); y = Vector(data[:, 3]);
+
+# map two input features to quadratic features used in regularization
+function mapfeature(x1, x2)
+    degree = 6
+    out = ones(size(x1[:,1]))
+    for i = 1:degree
+        for j = 1:degree
+            out[:, end + 1] = [x1 .^ [i - j]] .* [x2 .^ j]
+        end
+    end
+end
+
+function plotdboundary(θ, X, y)
+    if size(X, 2) <= 3
+        # two endpoints
+        plot_xaxis = [minimum(X[:,2])-2,  maximum(X[:,2])+2]
+        # compute decision boundary line
+        plot_yaxis = (-1 ./ θ[3]) .* (θ[2] .* plot_xaxis + θ[1])
+        plot(plot_xaxis, plot_yaxis, label="decision boundary")
+    else
+        # grid range
+        u = linspace(-1, 1.5, 50)
+        v = linspace(-1, 1.5, 50)
+        z = zeros(length(u), length(v));
+        # Evaluate z = θ * x over the grid
+        for i = 1:length(u)
+            for j = 1:length(v)
+                z[i,j] = mapfeature(u[i], v[j]) * θ
+            end
+        end
+        # transpose z before calling contour
+        z = z'
+        # Plot z = 0, specify the range [0, 0]
+        contour(u, v, z, [0, 0], lineWidth=2)
+    end
+end
+
+plotdboundary([0.203,0.203,0.203], X, y)
