@@ -143,25 +143,16 @@ Results of Optimization Algorithm
  """
 
 # Plot boundary (still part 3)
-# Scatter series
-using CSV, Plots; pyplot();
+# Plot first: decision boundary with θ
+using CSV, StatPlots, Plots; pyplot();
 data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex2/ex2/ex2data1.txt", datarow=1);
 
-X = data[:, [1,2]]; y = data[:, 3];
-
-pos = find(y); neg = find(iszero, y); # or neg = find(t -> t == 0, y);
-
-scatter(xaxis=("exam 1 score", (30,100), 30:10:100))
-scatter!(yaxis=("exam 2 score", (30,100), 30:10:100))
-scatter!(X[pos, 1], X[pos, 2], markershape=:+, label="admitted")
-scatter!(X[neg, 1], X[neg, 2], markershape=:circle, label="not admitted")
-
-# Decision boundary
-X = hcat(ones(100,1), Matrix(data[:, [1,2]])); y = Vector(data[:, 3]);
+X = data[:, [1,2]]; y = data[:, 3]; # works for plot
+X = hcat(ones(100,1), Matrix(data[:, [1,2]])); y = Vector(data[:, 3]); # works for plot
 
 # map two input features to quadratic features used in regularization
 function mapfeature(x1, x2)
-    degree = 6
+    degree = 6 # why 6?
     out = ones(size(x1[:,1]))
     for i = 1:degree
         for j = 1:degree
@@ -196,3 +187,15 @@ function plotdboundary(θ, X, y)
 end
 
 plotdboundary([0.203,0.203,0.203], X, y)
+
+# Scatter second: X
+X = data[:, [1,2]]; y = data[:, 3]; # works for scatter
+
+X = Matrix(data[:, [1,2]]); y = Vector(data[:, 3]); # works for scatter
+
+pos = find(y); neg = find(iszero, y); # or neg = find(t -> t == 0, y);
+
+scatter(xaxis=("exam 1 score", (30,100), 30:10:100))
+scatter!(yaxis=("exam 2 score", (30,100), 30:10:100))
+scatter!(X[pos, 1], X[pos, 2], markershape=:+, label="admitted")
+scatter!(X[neg, 1], X[neg, 2], markershape=:circle, label="not admitted")
