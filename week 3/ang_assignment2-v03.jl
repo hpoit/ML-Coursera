@@ -147,15 +147,15 @@ Results of Optimization Algorithm
 using CSV, StatPlots, Plots; pyplot();
 data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex2/ex2/ex2data1.txt", datarow=1);
 
-X = data[:, [1,2]]; y = data[:, 3]; # works for plot
 X = hcat(ones(100,1), Matrix(data[:, [1,2]])); y = Vector(data[:, 3]); # works for plot
+#X = data[:, [1,2]]; y = data[:, 3]; # works for plot
 
 # map two input features to quadratic features used in regularization
 function mapfeature(x1, x2)
     degree = 6 # why 6?
     out = ones(size(x1[:,1]))
     for i = 1:degree
-        for j = 1:degree
+        for j = 0:i
             out[:, end + 1] = [x1 .^ [i - j]] .* [x2 .^ j]
         end
     end
@@ -182,6 +182,7 @@ function plotdboundary(θ, X, y)
         # transpose z before calling contour
         z = z'
         # Plot z = 0, specify the range [0, 0]
+        # Contour should maximize inter-class distance
         contour(u, v, z, [0, 0], lineWidth=2)
     end
 end
