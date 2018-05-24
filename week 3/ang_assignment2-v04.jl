@@ -150,60 +150,24 @@ data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex2/ex2/ex2data1.txt
 X = hcat(ones(100,1), Matrix(data[:, [1,2]])); y = Vector(data[:, 3]); # works for plot
 #X = data[:, [1,2]]; y = data[:, 3]; # works for plot
 
-# map two input features to quadratic features used in regularization
-#function mapfeature(x1, x2)
-#    degree = 6 # why 6?
-#    out = ones(size(x1[:,1]))
-#    for i = 1:degree
-#        for j = 0:i
-#            out[:, end + 1] = [x1 .^ [i - j]] .* [x2 .^ j]
-#        end
-#    end
-#end
-
-function plotdboundary(θ, X, y)
-    # if second dimension of X (feature columns) is <= 3
-    #if size(X, 2) <= 3 # => 3, yes, for X => 100x3 Array{Union{Float64, Missings.Missing},2}
-        # define two endpoints for the x-axis with a margin of 2
-        # this already was defined for scatter ([30, 100])
-        plot_xaxis = [minimum(X[:,2])-2,  maximum(X[:,2])+2] # 1 -
-        # define gradient or theta, taken from line 76-78
-        θ = [-25.1614, 0.206232, 0.201472]
-        # compute decision boundary line endpoints ([94.179, 22.5252])
-        plot_yaxis = (-1 ./ θ[3]) .* (θ[2] .* [30, 100] + θ[1]) # 2 -
-        #plot(plot_xaxis, plot_yaxis, label="decision boundary") # 3 -
-        plot(xaxis=("exam 1 score", (30,100), 30:10:100))
-        plot!(yaxis=("exam 2 score", (30,100), 30:10:100))
-        plot!(plot_xaxis, plot_yaxis, label="decision boundary")
-#    else # if size(X, 2) > 3 (if second dimension of X is > 3)
-        # grid range
-#        u = linspace(-1, 1.5, 50)
-#        v = linspace(-1, 1.5, 50)
-#        z = zeros(length(u), length(v));
-        # Evaluate z = θ * x over the grid
-#        for i = 1:length(u)
-#            for j = 1:length(v)
-#                z[i,j] = mapfeature(u[i], v[j]) * θ
-#            end
-#        end
-        # transpose z before calling contour
-#        z = z'
-        # Plot z = 0, specify the range [0, 0]
-        # Contour should maximize inter-class distance
-#        contour(u, v, z, [0, 0], lineWidth=2)
-#    end
-#end
-
-plotdboundary([0.203,0.203,0.203], X, y)
+plot(xaxis=("exam 1 score", (30,100), 30:10:100))
+plot!(yaxis=("exam 2 score", (30,100), 30:10:100))
+# define x-axis from first feature column
+feature_xaxis = [minimum(X[:,2])-2,  maximum(X[:,2])+2]
+# define gradient or theta for decision boundary, taken from lines 76-78
+θ = [-25.1614, 0.206232, 0.201472]
+# define decision boundary line endpoints based on θ ([94.179, 22.5252])
+boundary_yaxis = (-1 ./ θ[3]) .* (θ[2] .* [30, 100] + θ[1]) # 2 -
+# plot feature and decision boundary
+plot!(feature_xaxis, boundary_yaxis, label="decision boundary")
 
 # Scatter second: X
 X = data[:, [1,2]]; y = data[:, 3]; # works for scatter
 
 X = Matrix(data[:, [1,2]]); y = Vector(data[:, 3]); # works for scatter
 
+# define indices for positive (admitted) and negative (not admitted) classes
 pos = find(y); neg = find(iszero, y); # or neg = find(t -> t == 0, y);
 
-scatter(xaxis=("exam 1 score", (30,100), 30:10:100))
-scatter!(yaxis=("exam 2 score", (30,100), 30:10:100))
 scatter!(X[pos, 1], X[pos, 2], markershape=:+, label="admitted")
 scatter!(X[neg, 1], X[neg, 2], markershape=:circle, label="not admitted")
