@@ -162,7 +162,7 @@ function mapfeature(x1, x2)
 end
 
 function plotdboundary(θ, X, y)
-    # if second dimension of X is <= 3 (feature columns)
+    # if second dimension of X (feature columns) is <= 3
     if size(X, 2) <= 3 # => 3, yes, for X => 100x3 Array{Union{Float64, Missings.Missing},2}
         # two endpoints
         plot_xaxis = [minimum(X[:,2])-2,  maximum(X[:,2])+2]
