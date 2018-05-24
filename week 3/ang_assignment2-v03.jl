@@ -162,13 +162,14 @@ function mapfeature(x1, x2)
 end
 
 function plotdboundary(θ, X, y)
-    if size(X, 2) <= 3
+    # if second dimension of X is <= 3 (feature columns)
+    if size(X, 2) <= 3 # => 3, yes, for X => 100x3 Array{Union{Float64, Missings.Missing},2}
         # two endpoints
         plot_xaxis = [minimum(X[:,2])-2,  maximum(X[:,2])+2]
         # compute decision boundary line
         plot_yaxis = (-1 ./ θ[3]) .* (θ[2] .* plot_xaxis + θ[1])
         plot(plot_xaxis, plot_yaxis, label="decision boundary")
-    else
+    else # if size(X, 2) > 3 (if second dimension of X is > 3)
         # grid range
         u = linspace(-1, 1.5, 50)
         v = linspace(-1, 1.5, 50)
