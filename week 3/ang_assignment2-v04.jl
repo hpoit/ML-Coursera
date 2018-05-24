@@ -147,8 +147,8 @@ Results of Optimization Algorithm
 using CSV, StatPlots, Plots; pyplot();
 data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex2/ex2/ex2data1.txt", datarow=1);
 
-X = hcat(ones(100,1), Matrix(data[:, [1,2]])); y = Vector(data[:, 3]); # works for plot
-#X = data[:, [1,2]]; y = data[:, 3]; # works for plot
+X = hcat(ones(100,1), Matrix(data[:, [1,2]])); y = Vector(data[:, 3]); # works for plot and scatter
+#X = data[:, [1,2]]; y = data[:, 3]; # works for plot and scatter
 
 plot(xaxis=("exam 1 score", (30,100), 30:10:100))
 plot!(yaxis=("exam 2 score", (30,100), 30:10:100))
@@ -162,12 +162,10 @@ boundary_yaxis = (-1 ./ θ[3]) .* (θ[2] .* [30, 100] + θ[1]) # 2 -
 plot!(feature_xaxis, boundary_yaxis, label="decision boundary")
 
 # Scatter second: X
-X = data[:, [1,2]]; y = data[:, 3]; # works for scatter
-
-X = Matrix(data[:, [1,2]]); y = Vector(data[:, 3]); # works for scatter
-
 # define indices for positive (admitted) and negative (not admitted) classes
 pos = find(y); neg = find(iszero, y); # or neg = find(t -> t == 0, y);
 
-scatter!(X[pos, 1], X[pos, 2], markershape=:+, label="admitted")
-scatter!(X[neg, 1], X[neg, 2], markershape=:circle, label="not admitted")
+scatter!(X[pos, 2], X[pos, 3], markershape=:+, label="admitted")
+scatter!(X[neg, 2], X[neg, 3], markershape=:circle, label="not admitted")
+
+# JOB DONE HERE. GRAPH IS CORRECT WITH DECISION BOUNDARY AND SCATTER SERIES
