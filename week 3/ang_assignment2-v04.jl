@@ -169,3 +169,30 @@ scatter!(X[pos, 2], X[pos, 3], markershape=:+, label="admitted")
 scatter!(X[neg, 2], X[neg, 3], markershape=:circle, label="not admitted")
 
 # JOB DONE HERE. GRAPH IS CORRECT WITH DECISION BOUNDARY AND SCATTER SERIES
+
+# Part 4: accurately predict
+# admittance probability with 45% on exam 1 and 85% on exam 2
+prob = sigmoid([1 45 85] * θ) # => 0.776287 as expected
+
+# training set accuracy
+function predict(θ, X)
+    m = size(X, 1)
+    p = zeros(m, 1)
+    for i = 1:m
+        if sigmoid(X * θ)[i] >= 0.5
+           p[i] = 1
+        else
+           p[i] = 0
+        end
+    end
+    p
+end # not sure this is what predict() is supposed to be
+
+p = predict(θ, X)
+
+# dot convert to convert a vector
+convert.(Int64, p)
+
+# train accuracy
+# dot the == operator for a vector of trues and falses
+mean(p .== y) # => 0.89 as expected
