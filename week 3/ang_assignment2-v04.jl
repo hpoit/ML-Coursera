@@ -1,4 +1,4 @@
-# Logit mode, v0.4
+# Logit model, v0.4
 
 # Part 2: compute cost and gradient
 using CSV
