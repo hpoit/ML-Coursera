@@ -1,4 +1,4 @@
-# Logit mode, v0.3
+# Logit mode, v0.4
 
 # Part 2: compute cost and gradient
 using CSV
@@ -186,7 +186,7 @@ function predict(θ, X)
         end
     end
     p
-end # not sure this is what predict() is supposed to be
+end
 
 p = predict(θ, X)
 
