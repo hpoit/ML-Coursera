@@ -2,7 +2,7 @@
 
 # part 1: basic function, A = eye(5), trivial
 
-# part 2: plotting initial data
+# part 2: scatter initial data
 using CSV
 data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex1/ex1/ex1data1.txt", datarow=1);
 
@@ -50,12 +50,13 @@ Results of Optimization Algorithm
  * Gradient Calls: 7
  """
 
-# plot linear regression onto initial data
-θ = [-3.895780878170897,1.19303364420903]
+# plot linear regression onto scatter
+θ = [-3.895780878170897, 1.19303364420903]
 feature_xaxis = [minimum(X[:,2]),  maximum(X[:,2])]
 regress_yaxis = (1 ./ θ[2]) .* (feature_xaxis + θ[1])
 plot!(feature_xaxis, regress_yaxis, label="linear regression")
-# see "linear regress onto scatter.png"
+# see "linear regression onto scatter.png"
 
 # hypothesis (prediction function) (not on assignment)
-h(θ, X) = θ' * X
+h(θ, X) = θ' .* X
+mean(h(θ, X)[:, 2] .== y)
