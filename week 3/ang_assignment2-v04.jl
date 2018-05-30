@@ -169,7 +169,7 @@ scatter!(X[pos, 2], X[pos, 3], markershape=:+, label="admitted")
 scatter!(X[neg, 2], X[neg, 3], markershape=:circle, label="not admitted")
 
 # JOB DONE HERE. GRAPH IS CORRECT WITH DECISION BOUNDARY AND SCATTER SERIES
-# Graph in https://github.com/hpoit/ML-Coursera/blob/master/week%203/boundary%20and%20scatter.png
+# Graph at https://github.com/hpoit/ML-Coursera/blob/master/week%203/boundary%20and%20scatter.png
 
 # Part 4: accurately predict
 # admittance probability with 45% on exam 1 and 85% on exam 2
