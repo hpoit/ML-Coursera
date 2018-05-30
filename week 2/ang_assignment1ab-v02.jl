@@ -12,7 +12,7 @@ m = length(y); # number of training examples
 
 using Plots
 
-scatter(x, y, xlabel="profit in thousands", ylabel="city population in thousands")
+scatter(x, y, xlabel="city population in thousands", ylabel="profit in thousands")
 # graph as "scatter population and profit.png"
 
 # part 3: cost and gradient descent
