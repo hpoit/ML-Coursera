@@ -157,7 +157,7 @@ feature_xaxis = [minimum(X[:,2])-2,  maximum(X[:,2])+2]
 # define gradient or theta for decision boundary, taken from lines 76-78
 θ = [-25.1614, 0.206232, 0.201472]
 # define decision boundary line endpoints based on θ ([94.179, 22.5252])
-boundary_yaxis = (-1 ./ θ[3]) .* (θ[2] .* [30, 100] + θ[1]) # 2 -
+boundary_yaxis = (-1 ./ θ[3]) .* (θ[2] .* [30, 100] + θ[1])
 # plot feature and decision boundary
 plot!(feature_xaxis, boundary_yaxis, label="decision boundary")
 
