@@ -6,7 +6,7 @@
 using CSV
 data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex1/ex1/ex1data1.txt", datarow=1);
 
-x = Vector(data[:, 1]); y = Vector(data[:, 2]);
+x = convert(Vector{Float64},data[:, 1]); y = convert(Vector{Float64},data[:, 2]);
 
 m = length(y); # number of training examples
 
@@ -16,10 +16,10 @@ scatter(x, y, xlabel="city population in thousands", ylabel="profit in thousands
 # graph as "scatter population and profit.png"
 
 # part 3: cost and gradient descent
-X = hcat(ones(97, 1), Vector(data[:, 1]));
+X = hcat(ones(m, 1), x);
 
 # define cost function J
-J(θ) = 1 / (2 * 97) * sum((X * θ - y) .^ 2)
+J(θ) = inv(2m) * sum(abs2, X * θ - y)
 
 # test cost function J
 J([0.0, 0.0])
@@ -29,7 +29,7 @@ J([-1, 2])
 # => 54.24245508201238 as expected
 
 # minimize J
-using Optim; optimize(J, zeros(2), BFGS())
+using Optim; res = optimize(J, zeros(2), BFGS())
 """
 Results of Optimization Algorithm
  * Algorithm: BFGS
@@ -51,12 +51,12 @@ Results of Optimization Algorithm
  """
 
 # plot linear regression onto scatter
-θ = [-3.895780878170897, 1.19303364420903]
-feature_xaxis = [minimum(X[:,2]),  maximum(X[:,2])]
+θ = Optim.minimizer(res)
+feature_xaxis = collect(extrema(x))
 regress_yaxis = (1 ./ θ[2]) .* (feature_xaxis + θ[1])
-plot!(feature_xaxis, regress_yaxis, label="linear regression")
+plot!(feature_xaxis, regress_yaxis, label = "linear regression")
 # see "linear regression onto scatter.png"
 
 # hypothesis (prediction function) (not on assignment)
-h(θ, X) = θ' .* X
-mean(h(θ, X)[:, 2] .== y)
+h(θ, X) = X * θ
+ŷ = h(θ, X);
