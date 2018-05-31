@@ -1,3 +1,7 @@
+# Intial setup of parameters
+input_layer_size  = 400  # 20x20 Input Images of Digits
+num_labels = 10          # for digits 0-9; digit 0 is mapped to label 10
+
 # Part 1: loading and visualizing
 # use a package that reads 5000 training examples of handwritten digits (subset
 # of MNIST: http://yann.lecun.com/exdb/mnist/) with X and y
@@ -53,4 +57,4 @@ cost(theta_t, X_t, y_t, # missing lambda_t)
 function one_vs_all end
 
 lambda = 0.1
-[all_theta] = one_vs_all(X, y, num_labels, lambda);
+all_theta = one_vs_all(X, y, num_labels, lambda)
