@@ -14,10 +14,10 @@ scatter(x, y, xlabel="city population in thousands", ylabel="profit in thousands
 # graph as "scatter population and profit.png"
 
 # part 3: cost and gradient descent
-X = hcat(ones(97, 1), Vector(data[:, 1]));
+X = hcat(ones(m, 1), Vector(data[:, 1]));
 
 # define cost function J
-J(θ) = 1 / (2 * 97) * sum((X * θ - y) .^ 2)
+J(θ) = 1 / (2 * m) * sum((X * θ - y) .^ 2)
 
 # test cost function J
 J([0.0, 0.0])
@@ -27,7 +27,8 @@ J([-1, 2])
 # => 54.24245508201238 as expected
 
 # minimize J
-using Optim; optimize(J, zeros(2), BFGS())
+using Optim
+optimize(J, zeros(2), BFGS())
 """
 Results of Optimization Algorithm
  * Algorithm: BFGS
