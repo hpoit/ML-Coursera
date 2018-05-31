@@ -3,14 +3,12 @@
 # part 1: basic function, A = eye(5), trivial
 
 # part 2: scatter initial data
-using CSV
+using CSV, Plots, LinearLeastSquares
 data = CSV.read("/Users/kevinliu/Documents/machine-learning-ex1/ex1/ex1data1.txt", datarow=1);
 
 x = Vector(data[:, 1]); y = Vector(data[:, 2]);
 
 m = length(y); # number of training examples
-
-using Plots
 
 scatter(x, y, xlabel="city population in thousands", ylabel="profit in thousands")
 # graph as "scatter population and profit.png"
@@ -49,6 +47,9 @@ Results of Optimization Algorithm
  * Objective Calls: 7
  * Gradient Calls: 7
  """
+
+# minimize J with LinearLeastSquares
+
 
 # plot linear regression onto scatter
 θ = [-3.895780878170897, 1.19303364420903]
