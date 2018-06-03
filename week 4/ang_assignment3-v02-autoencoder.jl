@@ -1,4 +1,4 @@
-# Autoencoder
+# Autoencoder (thanks Mike Innes)
 
 using Flux, Flux.Data.MNIST
 using Flux: @epochs, onehotbatch, argmax, mse, throttle
@@ -51,4 +51,4 @@ end
 
 cd("/Users/kevinliu/Google\ Drive/ML\ Coursera/week\ 4")
 
-save("sample.png", sample())
+save("autoencoded.png", sample())
