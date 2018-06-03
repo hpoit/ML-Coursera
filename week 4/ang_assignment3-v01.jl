@@ -6,10 +6,11 @@ num_labels = 10          # for digits 0-9; digit 0 is mapped to label 10
 # use a package that reads 5000 training examples of handwritten digits with
 # X and y, from MNIST
 
-# MNIST.jl provides access by the i-th image or label (example)
+# MNIST.jl provides access by the i-th image x or label (example) y
+# MNIST contains 60,000 images, each with 784 features
 using MNIST
-x = trainfeatures(5000) # => 784-element Array{Float64,1} (vector of 5000th image)
-y = trainlabel(5000) # => 2.0 (label of 5000th handwritten digit: 2)
+x = trainfeatures(5000) # => 784-element Array{Float64,1} (feature vector of image 5000)
+y = trainlabel(5000) # => 2.0 (label of image 5000: digit 2)
 
 m = size(x, 1)
 
