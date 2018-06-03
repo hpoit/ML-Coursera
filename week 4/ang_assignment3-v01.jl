@@ -12,9 +12,13 @@ using MNIST
 x = trainfeatures(5000) # => 784-element Array{Float64,1} (feature vector of image 5000)
 y = trainlabel(5000) # => 2.0 (label of image 5000: digit 2)
 
-m = size(x, 1)
+# for 100 random data points of matrix X, consider
+X = rand(10, 15)
+m = size(X, 1)
+rand_ind = randperm(m); rand_ind[1:5, :] # rows 1-5 of randomized indices of first column
+X[rand_ind[1:5,:]]
 
-# 100 random data points
+# for 100 random data points of vector x, do
 rand_indices = randperm(m)
 sel = X[rand_indices[1:100], :]
 display(sel)
