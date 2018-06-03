@@ -3,11 +3,11 @@ input_layer_size  = 400  # 20x20 Input Images of Digits
 num_labels = 10          # for digits 0-9; digit 0 is mapped to label 10
 
 # Part 1: loading and visualizing
-# use a package that reads 5000 training examples of handwritten digits with
-# X and y, from MNIST
+# Read 5000 training examples of digits with x and y
 
 # MNIST.jl provides access by the i-th image x or label (example) y
 # MNIST contains 60,000 images, each with 784 features
+# trainfeatures() and trainlabel() call up to 60000
 using MNIST
 x = trainfeatures(5000) # => 784-element Array{Float64,1} (feature vector of image 5000)
 y = trainlabel(5000) # => 2.0 (label of image 5000: digit 2)
