@@ -3,7 +3,7 @@ input_layer_size  = 400  # 20x20 Input Images of Digits
 num_labels = 10          # for digits 0-9; digit 0 is mapped to label 10
 
 # Part 1: loading and visualizing
-# Read 5000 training examples of digits with x and y
+# Read 5000 y training examples of digits with corresponding vectors x
 
 # MNIST.jl provides access by the i-th image x or label (example) y
 # MNIST contains 60,000 images, each with 784 features
@@ -19,9 +19,9 @@ rand_ind = randperm(m); rand_ind[1:5, :] # rows 1-5 of randomized indices of fir
 X[rand_ind[1:5,:]]
 
 # for 100 random data points of vector x, do
-rand_indices = randperm(m)
-sel = X[rand_indices[1:100], :]
-display(sel)
+X, y = traindata() # X => 784x60000 Array{Float64,2}, y => 60000-element Array{Float64,1}
+rand_indices = randperm(size(X,1)) # => 784 element vector of randomized indices
+subset = X[rand_indices[1:100], :] # => 100×60000 matrix of randomized indices
 
 # Part 2a: vectorized and regularized logit for one-vs-all classification of dataset
 
