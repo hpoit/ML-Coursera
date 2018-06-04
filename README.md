@@ -1,4 +1,4 @@
-# ML-Coursera (Andrew Ng) (written in Julia)
+# ML-Coursera by Andrew Ng (written in Julia)
 
 * Week 1 - Introduction
 * Week 2 - Linear regression with multiple variables

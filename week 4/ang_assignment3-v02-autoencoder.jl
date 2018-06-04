@@ -52,3 +52,4 @@ end
 cd("/Users/kevinliu/Google\ Drive/ML\ Coursera/week\ 4")
 
 save("autoencoded.png", sample())
+# available at https://github.com/hpoit/ML-Coursera/blob/master/week%204/autoencoded.png
