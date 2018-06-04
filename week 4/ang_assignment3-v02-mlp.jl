@@ -5,14 +5,14 @@ using Flux: onehotbatch, argmax, crossentropy, throttle
 using Base.Iterators: repeated
 # using CuArrays
 
-# Classify MNIST digits with a simple multi-layer-perceptron
+# Classify MNIST digits with a simple multilayer perceptron
 
 imgs = MNIST.images()
 # Stack images into one large batch
 X = hcat(float.(reshape.(imgs, :))...) |> gpu
 
 labels = MNIST.labels()
-# One-hot-encode the labels
+# One-hot encode the labels
 Y = onehotbatch(labels, 0:9) |> gpu
 
 m = Chain(
@@ -20,6 +20,8 @@ m = Chain(
   Dense(32, 10),
   softmax) |> gpu
 
+# loss with vecnorm regularizer
+# loss(x, y) = crossentropy(m(x), y) + sum(vecnorm, params(m))
 loss(x, y) = crossentropy(m(x), y)
 
 accuracy(x, y) = mean(argmax(m(x)) .== argmax(y))
