@@ -1,3 +1,5 @@
+# Convolutional neural network (thanks Mike Innes)
+
 using Flux, Flux.Data.MNIST
 using Flux: onehotbatch, argmax, crossentropy, throttle
 using Base.Iterators: repeated, partition
