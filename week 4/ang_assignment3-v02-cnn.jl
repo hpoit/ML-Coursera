@@ -11,13 +11,13 @@ imgs = MNIST.images()
 
 labels = onehotbatch(MNIST.labels(), 0:9)
 
-# Partition into batches of size 1,000
+# Partition into batches of size 1000
 train = [(cat(4, float.(imgs[i])...), labels[:,i])
          for i in partition(1:60_000, 1000)]
 
 train = gpu.(train)
 
-# Prepare test set (first 1,000 images)
+# Prepare test set (first 1000 images)
 tX = cat(4, float.(MNIST.images(:test)[1:1000])...) |> gpu
 tY = onehotbatch(MNIST.labels(:test)[1:1000], 0:9) |> gpu
 

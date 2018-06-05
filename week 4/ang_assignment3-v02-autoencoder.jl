@@ -17,11 +17,11 @@ data = gpu.(data)
 
 N = 32 # Size of the encoding
 
-# You can try to make the encoder/decoder network larger
-# Also, the output of encoder is a coding of the given input.
-# In this case, the input dimension is 28^2 and the output dimension of
-# encoder is 32. This implies that the coding is a compressed representation.
-# We can make lossy compression via this `encoder`.
+# The encoder/decoder network can be made larger
+# Encoder output is based on input
+# Here, the input dimension is 28^2 and encoder output dimension is 32,
+# which implies the encoding is a compressed representation.
+# The compressed encoding can also be made lossy
 encoder = Dense(28^2, N, relu) |> gpu
 decoder = Dense(N, 28^2, relu) |> gpu
 
