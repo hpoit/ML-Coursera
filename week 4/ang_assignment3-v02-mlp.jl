@@ -21,7 +21,7 @@ m = Chain(
   softmax) |> gpu
 
 # see May 10 2018, week 3 notes: solving overfitting problem (underfit in this case)
-# loss with vecnorm regularizer (much lower accuracy)
+# loss with L2 Ridge vecnorm regularizer (much lower accuracy)
 # loss(x, y) = crossentropy(m(x), y) + sum(vecnorm, params(m))
 loss(x, y) = crossentropy(m(x), y)
 
