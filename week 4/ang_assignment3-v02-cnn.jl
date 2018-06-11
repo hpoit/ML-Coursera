@@ -1,5 +1,18 @@
 # Convolutional neural network (thanks Mike Innes)
 
+"""
+In machine learning, a convolutional neural network (CNN, or ConvNet) is a class
+of deep, feed-forward artificial neural networks, most commonly applied to
+analyzing visual imagery.
+CNNs use a variation of multilayer perceptrons designed to require minimal
+preprocessing. They are also known as shift invariant or space invariant
+artificial neural networks (SIANN), based on their shared-weights architecture
+and translation invariance characteristics.
+Convolutional networks were inspired by biological processes in that the
+connectivity pattern between neurons resembles the organization of the
+animal visual cortex.
+"""
+
 using Flux, Flux.Data.MNIST
 using Flux: onehotbatch, argmax, crossentropy, throttle
 using Base.Iterators: repeated, partition
