@@ -26,7 +26,7 @@ labels = MNIST.labels()
 # One-hot encode the labels
 Y = onehotbatch(labels, 0:9) |> gpu
 m = Chain(
-  Dense(28^2, 32, relu), # layer 1
+  Dense(28^2, 32, relu), # layer 1 with relu activation function
   Dense(32, 10),         # layer 2
   softmax) |> gpu
 
