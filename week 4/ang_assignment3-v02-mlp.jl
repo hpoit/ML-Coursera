@@ -41,7 +41,8 @@ opt = ADAM(params(m)) # backpropagate loss(rand(10)) from Flux.jl/test/optimise.
 # backprop is vectorized https://github.com/FluxML/Flux.jl/blob/master/src/tracker/back.jl#L35-L36
 # but only works on a GPU backend
 # https://github.com/FluxML/Flux.jl/blob/ccef9f4dd462fbeb139918c145636d70e6034048/src/cuda/cudnn.jl#L332-L354
-# Flux's backprop already uses ReverseDiff with Cassette
+# Flux's backprop already uses ReverseDiff with Cassette with injection on
+# https://github.com/FluxML/Flux.jl/blob/master/src/tracker/Tracker.jl#L19
 
 # Because MLP backprops for training, params() tracks info to calculate derivatives
 # When tracked, gradient checking compares backprop gradient to numerical estimate of J(θ) gradient
