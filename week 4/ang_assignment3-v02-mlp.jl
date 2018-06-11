@@ -37,7 +37,8 @@ loss(x, y) = crossentropy(m(x), y)
 accuracy(x, y) = mean(argmax(m(x)) .== argmax(y))
 dataset = repeated((X, Y), 200)
 evalcb = () -> @show(loss(X, Y))
-opt = ADAM(params(m))
+opt = ADAM(params(m)) # backpropagate loss(rand(10))
+# backprop is vectorized https://github.com/FluxML/Flux.jl/blob/master/src/tracker/back.jl#L35-L36
 
 Flux.train!(loss, dataset, opt, cb = throttle(evalcb, 10))
 """
