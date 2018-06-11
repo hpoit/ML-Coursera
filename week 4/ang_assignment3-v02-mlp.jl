@@ -37,9 +37,9 @@ loss(x, y) = crossentropy(m(x), y)
 accuracy(x, y) = mean(argmax(m(x)) .== argmax(y))
 dataset = repeated((X, Y), 200)
 evalcb = () -> @show(loss(X, Y))
-opt = ADAM(params(m)) # backpropagate loss(rand(10))
+opt = ADAM(params(m)) # backpropagate loss(rand(10)) from Flux.jl/test/optimise.jl
 # backprop is vectorized https://github.com/FluxML/Flux.jl/blob/master/src/tracker/back.jl#L35-L36
-# but only works with GPUs
+# but only works on a GPU backend
 # https://github.com/FluxML/Flux.jl/blob/ccef9f4dd462fbeb139918c145636d70e6034048/src/cuda/cudnn.jl#L332-L354
 
 Flux.train!(loss, dataset, opt, cb = throttle(evalcb, 10))
