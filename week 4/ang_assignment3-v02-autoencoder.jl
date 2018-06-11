@@ -39,14 +39,11 @@ opt = ADAM(params(m))
 using Images, QuartzImageIO
 img(x::Vector) = Gray.(reshape(clamp.(x, 0, 1), 28, 28))
 function sample()
-    # 20 random digits
-    before = [imgs[i] for i in rand(1:length(imgs), 20)]
-    # Before and after images
-    after = img.(map(x -> cpu(m)(float(vec(x))).data, before))
-    # Stack them all together
-    hcat(vcat.(before, after)...)
+    before = [imgs[i] for i in rand(1:length(imgs), 20)] # 20 random digits
+    after = img.(map(x -> cpu(m)(float(vec(x))).data, before)) # Before and after images
+    hcat(vcat.(before, after)...) # Stack them all together
 end
 
 cd("/Users/kevinliu/Google\ Drive/ML\ Coursera/week\ 4")
 save("autoencoded.png", sample())
-# available at https://github.com/hpoit/ML-Coursera/blob/master/week%204/autoencoded.png
+# png available at https://github.com/hpoit/ML-Coursera/blob/master/week%204/autoencoded.png
