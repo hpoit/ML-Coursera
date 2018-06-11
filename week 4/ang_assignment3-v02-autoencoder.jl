@@ -13,8 +13,7 @@ using Base.Iterators: partition
 using Juno: @progress
 # using CuArrays
 
-# Encode MNIST images as compressed vectors that can later be decoded back into
-# images.
+# Encode MNIST images as compressed vectors that can later be decoded back into images
 imgs = MNIST.images()
 
 # Partition into batches of size 1000
