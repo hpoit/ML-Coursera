@@ -43,6 +43,7 @@ opt = ADAM(params(m)) # backpropagate loss(rand(10)) from Flux.jl/test/optimise.
 # https://github.com/FluxML/Flux.jl/blob/ccef9f4dd462fbeb139918c145636d70e6034048/src/cuda/cudnn.jl#L332-L354
 # Flux's backprop already uses ReverseDiff with Cassette
 
+# Because MLP backprops for training, params() tracks info to calculate derivatives
 # When tracked, gradient checking compares backprop gradient to numerical estimate of J(θ) gradient
 # https://github.com/FluxML/Flux.jl/blob/4035745f6e58b2ce7bebffd43673efa0486c630f/src/tracker/numeric.jl
 Flux.train!(loss, dataset, opt, cb = throttle(evalcb, 10))
