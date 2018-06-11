@@ -19,15 +19,15 @@ imgs = MNIST.images()
 # Partition into batches of size 1000
 data = [float(hcat(vec.(imgs)...)) for imgs in partition(imgs, 1000)]
 data = gpu.(data)
-N = 32 # Size of the encoding
+N = 32 # Size of the encoding output layer
 
 # The encoder/decoder network can be made larger
 # Encoder output is based on input
 # Here, the input dimension is 28^2 and encoder output dimension is 32,
 # which implies the encoding is a compressed representation.
 # The compressed encoding can also be made lossy
-encoder = Dense(28^2, N, relu) |> gpu
-decoder = Dense(N, 28^2, relu) |> gpu
+encoder = Dense(28^2, N, relu) |> gpu # layer 1
+decoder = Dense(N, 28^2, relu) |> gpu # layer 2
 m = Chain(encoder, decoder)
 loss(x) = mse(m(x), x)
 evalcb = throttle(() -> @show(loss(data[1])), 5)

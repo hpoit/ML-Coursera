@@ -31,12 +31,12 @@ train = gpu.(train)
 tX = cat(4, float.(MNIST.images(:test)[1:1000])...) |> gpu
 tY = onehotbatch(MNIST.labels(:test)[1:1000], 0:9) |> gpu
 m = Chain(
-  Conv((2,2), 1=>16, relu),
+  Conv((2,2), 1=>16, relu), # layer 1
   x -> maxpool(x, (2,2)),
-  Conv((2,2), 16=>8, relu),
+  Conv((2,2), 16=>8, relu), # layer 2
   x -> maxpool(x, (2,2)),
   x -> reshape(x, :, size(x, 4)),
-  Dense(288, 10), softmax) |> gpu
+  Dense(288, 10), softmax) |> gpu # layer 3
 m(train[1][1])
 loss(x, y) = crossentropy(m(x), y)
 accuracy(x, y) = mean(argmax(m(x)) .== argmax(y))
