@@ -12,4 +12,4 @@
 
 # Flux's MLP https://github.com/hpoit/ML-Coursera/blob/master/week%204/ang_assignment3-v02-mlp.jl
 # covers Parts 1-10 except 9, which has yet to be built for Flux, and which I'm
-# currently discussing it with Mike Innes 
+# currently consulting with Mike Innes
