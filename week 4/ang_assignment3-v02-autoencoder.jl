@@ -26,9 +26,9 @@ N = 32 # Size of the encoding output layer
 # Here, the input dimension is 28^2 and encoder output dimension is 32,
 # which implies the encoding is a compressed representation.
 # The compressed encoding can also be made lossy
-encoder = Dense(28^2, N, relu) |> gpu # layer 1 with relu activation function
-decoder = Dense(N, 28^2, relu) |> gpu # layer 2 with relu activation function
-m = Chain(encoder, decoder)
+encoder = Dense(28^2, N, relu) |> gpu # layer 2 with relu activation function
+decoder = Dense(N, 28^2, relu) |> gpu # layer 3 with relu activation function
+m = Chain(encoder, decoder) # layer 1
 loss(x) = mse(m(x), x)
 evalcb = throttle(() -> @show(loss(data[1])), 5)
 opt = ADAM(params(m))
