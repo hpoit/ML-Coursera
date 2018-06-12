@@ -12,5 +12,6 @@
 
 # Flux's MLP https://github.com/hpoit/ML-Coursera/blob/master/week%204/ang_assignment3-v02-mlp.jl
 # covers Parts 1-10 except 9, which has yet to be built for Flux
-# Jesse Bettencourt suggested reading https://distill.pub/2017/feature-visualization/
+# Jesse Bettencourt (https://github.com/jessebett) suggested I read
+# https://distill.pub/2017/feature-visualization/
 # I would like to implement it for Flux
