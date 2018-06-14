@@ -33,3 +33,8 @@ gradient transformation (preconditioning) further improves visualization.
 """
 Next: https://distill.pub/2018/building-blocks/
 """
+
+"""
+For NN interpretability research, a new network for visualizing neural networks
+will have to be built: https://github.com/tensorflow/lucid/blob/master/notebooks/tutorial.ipynb
+"""
