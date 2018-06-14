@@ -15,6 +15,10 @@
 # Jesse Bettencourt (https://github.com/jessebett) suggested I read
 # https://distill.pub/2017/feature-visualization/
 """
+For NN interpretability research, a new network for visualizing neural networks
+will have to be built: https://github.com/tensorflow/lucid/blob/master/notebooks/tutorial.ipynb
+"""
+"""
 Distilling the Distilled, for a Julia implementation:
 Jesse's suggestion takes visualization to a whole new level.
 In the article, feature visualization (what a neuron looks for) is done through
@@ -29,12 +33,6 @@ families, trade-off being accurate correlations v. realistic examples.
 However, regularization as is known only supresses noise, so combining it with
 gradient transformation (preconditioning) further improves visualization.
 """
-
 """
 Next: https://distill.pub/2018/building-blocks/
-"""
-
-"""
-For NN interpretability research, a new network for visualizing neural networks
-will have to be built: https://github.com/tensorflow/lucid/blob/master/notebooks/tutorial.ipynb
 """
