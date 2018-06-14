@@ -19,7 +19,7 @@ Distilling the Distilled, for a Julia implementation:
 Jesse's suggestion takes visualization to a whole new level.
 In the article, feature visualization (what a neuron looks for) is done through
 optimization for accuracy and optimized diversification for better feature definition
-(cause of neuron firing). To understand neural nets, the article observes
+(what causes a neuron to fire). To understand neural nets, the article observes
 combinations of optimized and interpolated pair neurons working together to
 represent images.
 
