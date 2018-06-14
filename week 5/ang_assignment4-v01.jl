@@ -20,7 +20,7 @@ will have to be built: https://github.com/tensorflow/lucid/blob/master/notebooks
 """
 """
 Distilling the Distilled, for a Julia implementation:
-Jesse's suggestion takes visualization to a whole new level.
+Jesse's suggestion takes visualization to a more sophisticated level.
 In the article, feature visualization (what a neuron looks for) is done through
 optimization for accuracy and optimized diversification for better feature definition
 (what causes a neuron to fire). To understand neural nets, the article observes
