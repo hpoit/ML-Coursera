@@ -14,4 +14,22 @@
 # covers Parts 1-10 except 9, which has yet to be built for Flux
 # Jesse Bettencourt (https://github.com/jessebett) suggested I read
 # https://distill.pub/2017/feature-visualization/
-# I would like to implement it for Flux
+"""
+Distilling the Distilled, for a Julia implementation:
+Jesse's suggestion takes visualization to a whole new level.
+In the article, feature visualization (what a neuron looks for) is done through
+optimization for accuracy and optimized diversification for better feature definition
+(what causes neuron to fire). To understand neural nets, the article observes
+combinations of optimized and interpolated pair neurons working together to
+represent images.
+
+Optimization simultaneously generates noise and high frequency patterns,
+which are traditionally reduced by the three intermediate regularization
+families, trade-off being accurate correlations v. realistic examples.
+However, regularization as is known only supresses noise, so combining it with
+gradient transformation (preconditioning) further improves visualization.
+"""
+
+"""
+Next: https://distill.pub/2018/building-blocks/
+"""
