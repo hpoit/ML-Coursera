@@ -36,4 +36,45 @@ gradient transformation (preconditioning) further improves visualization.
 """
 """
 Next: https://distill.pub/2018/building-blocks/
+The combination of interpretability techniques provides a powerful interface.
+The power of NNs lies in the hidden layers, where at each one the network discovers
+a new representation of the input. The activation cube of an NN can be differently
+sliced to target different activations, which are represented as abstract vectors,
+and transformed to give it more meaning as a semantic dictionary.
+
+Semantic dicts are formed by combining what a neuron looks for (vis) when it
+fires (activation) and sorting them by how much they fire (activ magnitude).
+This semantic dictionary finds meaningful indices and expresses an NN's learned
+abstractions through canonical examples, which at times are not defined by human
+language. Reducing neurons to human ideas is a lossy operation (not deep enough).
+
+Semantic dicts in neuron terms are used here as the foundation for composable
+interpretability techniques.
+
+What the network sees in an image is the dot product maximization of the respective
+activation vector. This technique applied to all vectors reveals what the network
+understands of the image as a whole.
+
+The network's understanding evolves across layers.
+Scaling enables activation magnitude in each layer.
+
+Attribution explains concept building from neuron relationships. The most common
+attribution interface is the saliency map, or heatmap of the pixels that most
+influence the output. This approach has two weaknesses (not discussed here).
+Attribution tends to be more meaningful in high-level layers.
+
+Channel attribution separates concepts by identifying each detector contribution
+on output. Most contributing channels to output are represented by a semantic dict.
+
+Combining space locations with channels reveals important aspects of a model, but
+has two shortcomings: too much information for a human to understand from long-tail
+channels and slight impacts on output, and extremely lossy aggregations.
+
+To make interfaces human scale, breaking up activations in a meaningful way is key.
+This can be done with matrix factorization, which can reveal the purpose of neuron
+groups. Factorization is a function of user interface goals. NNMF reduces many
+neurons to small groups that summarizes an interface goal, in this case knowing
+what the network detected, and the effect of each group on the output classes.
+
+Interface space exploration depends on user goals and constraints. 
 """
