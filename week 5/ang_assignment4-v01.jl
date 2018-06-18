@@ -73,8 +73,8 @@ channels and slight impacts on output, and extremely lossy aggregations.
 To make interfaces human scale, breaking up activations in a meaningful way is key.
 This can be done with matrix factorization, which can reveal the purpose of neuron
 groups. Factorization is a function of user interface goals. NNMF reduces many
-neurons to small groups that summarizes an interface goal, in this case knowing
+neurons to small groups that summarize an interface goal, in this case knowing
 what the network detected, and the effect of each group on the output classes.
 
-Interface space exploration depends on user goals and constraints. 
+Interface space exploration depends on user goals and constraints.
 """
