@@ -35,7 +35,7 @@ However, regularization as is known only supresses noise, so combining it with
 gradient transformation (preconditioning) further improves visualization.
 """
 """
-Summary of https://distill.pub/2018/building-blocks/
+Summary of https://distill.pub/2018/building-blocks/:
 The combination of interpretability techniques provides a powerful interface.
 The power of NNs lies in the hidden layers, where at each one the network discovers
 a new representation of the input. The activation cube of an NN can be differently
